@@ -81,6 +81,29 @@
             padding: 20px;
             margin-top: 50px;
         }
+
+        /* Pin code input */
+        #pin-container {
+            margin-top: 50px;
+        }
+
+        #pin-input {
+            padding: 10px;
+            font-size: 20px;
+            width: 200px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #pin-btn {
+            padding: 10px 20px;
+            background-color: #d63384;
+            color: white;
+            font-size: 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -95,6 +118,12 @@
     <div id="destination-page" class="hidden">
         <button id="close-btn" onclick="exitFullscreenAndReload()">X</button>
         <h2 id="destination-text"></h2>
+    </div>
+
+    <div id="pin-container" class="hidden">
+        <h2>Enter Pin Code:</h2>
+        <input type="password" id="pin-input" maxlength="4" placeholder="Enter Pin" />
+        <button id="pin-btn" onclick="verifyPin()">Submit Pin</button>
     </div>
 
     <footer>Your driver is Michelle D</footer>
@@ -127,7 +156,10 @@
         const buttonsDiv = document.getElementById("buttons");
         const homeDiv = document.getElementById("home");
         const destinationDiv = document.getElementById("destination-page");
+        const pinDiv = document.getElementById("pin-container");
         const destinationText = document.getElementById("destination-text");
+
+        const correctPin = "7754"; // Set your desired pin code here
 
         function goFullscreen() {
             let elem = document.documentElement;
@@ -169,6 +201,16 @@
                 button.onclick = () => showDestination(route);
                 buttonsDiv.appendChild(button);
             });
+        }
+
+        function verifyPin() {
+            const pinInput = document.getElementById("pin-input").value;
+            if (pinInput === correctPin) {
+                pinDiv.classList.add("hidden");
+                homeDiv.classList.remove("hidden");
+            } else {
+                alert("Incorrect Pin. Please try again.");
+            }
         }
 
         createButtons();
