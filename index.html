@@ -81,40 +81,11 @@
             padding: 20px;
             margin-top: 50px;
         }
-
-        /* Pin code input */
-        #pin-container {
-            margin-top: 50px;
-        }
-
-        #pin-input {
-            padding: 10px;
-            font-size: 20px;
-            width: 200px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #pin-btn {
-            padding: 10px 20px;
-            background-color: #d63384;
-            color: white;
-            font-size: 20px;
-            margin-top: 10px;
-            border: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 
     <h1>Sweetheart Ref Transit</h1>
-
-    <div id="pin-container">
-        <h2>Enter Pin Code:</h2>
-        <input type="password" id="pin-input" maxlength="4" placeholder="Enter Pin" />
-        <button id="pin-btn" onclick="verifyPin()">Submit Pin</button>
-    </div>
 
     <div id="home" class="hidden">
         <h2>Select Your Route:</h2>
@@ -158,12 +129,9 @@
         const buttonsDiv = document.getElementById("buttons");
         const homeDiv = document.getElementById("home");
         const destinationDiv = document.getElementById("destination-page");
-        const pinDiv = document.getElementById("pin-container");
         const destinationText = document.getElementById("destination-text");
         const confirmBtn = document.getElementById("confirm-btn");
         const cancelBtn = document.getElementById("cancel-btn");
-
-        const correctPin = "4096"; // Pin code is now 4096
 
         function goFullscreen() {
             let elem = document.documentElement;
@@ -207,17 +175,6 @@
             });
         }
 
-        function verifyPin() {
-            const pinInput = document.getElementById("pin-input").value;
-            if (pinInput === correctPin) {
-                pinDiv.classList.add("hidden");
-                homeDiv.classList.remove("hidden");
-                createButtons();
-            } else {
-                alert("Incorrect Pin. Please try again.");
-            }
-        }
-
         function confirmRoute() {
             // Hide both confirm and cancel buttons
             confirmBtn.classList.add("hidden");
@@ -228,6 +185,15 @@
             destinationDiv.classList.add("hidden");
             homeDiv.classList.remove("hidden");
         }
+
+        // Show home page with route options
+        homeDiv.classList.remove("hidden");
+        createButtons();
+
+        // Add a delay of 1.5 seconds before going fullscreen when the page loads
+        setTimeout(() => {
+            goFullscreen();
+        }, 1500);  // 1500 milliseconds = 1.5 seconds
     </script>
 
 </body>
