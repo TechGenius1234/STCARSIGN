@@ -72,6 +72,15 @@
         #close-btn:hover {
             color: #b0256f;
         }
+        /* Larger route text */
+        #destination-text {
+            font-size: 80px; /* Increased size for visibility */
+            color: #333;
+            font-weight: bold;
+            word-wrap: break-word;
+            padding: 20px;
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
@@ -103,7 +112,16 @@
             "MNP TO WINFIELD", "WINFIELD TO MNP",
             "MEMORIAL TO RUTLAND", "RUTLAND TO MEMORIAL",
             "MNP TO MEMORIAL", "MEMORIAL TO MNP",
-            "WINFIELD TO RUTLAND", "RUTLAND TO WINFIELD"
+            "WINFIELD TO RUTLAND", "RUTLAND TO WINFIELD",
+            // New routes with Jim Lind and Royal Lepage arenas
+            "MNP TO JIM LIND", "JIM LIND TO MNP",
+            "WINFIELD TO JIM LIND", "JIM LIND TO WINFIELD",
+            "MEMORIAL TO JIM LIND", "JIM LIND TO MEMORIAL",
+            "RUTLAND TO JIM LIND", "JIM LIND TO RUTLAND",
+            "MNP TO ROYAL LEPAGE", "ROYAL LEPAGE TO MNP",
+            "WINFIELD TO ROYAL LEPAGE", "ROYAL LEPAGE TO WINFIELD",
+            "MEMORIAL TO ROYAL LEPAGE", "ROYAL LEPAGE TO MEMORIAL",
+            "RUTLAND TO ROYAL LEPAGE", "ROYAL LEPAGE TO RUTLAND"
         ];
 
         const buttonsDiv = document.getElementById("buttons");
