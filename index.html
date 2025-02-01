@@ -100,7 +100,7 @@
     <div id="destination-page" class="hidden">
         <button id="close-btn" onclick="exitFullscreenAndReload()">X</button>
         <h2 id="destination-text"></h2>
-        <button id="confirm-btn" onclick="confirmRoute()">Confirm Route</button>
+        <button id="confirm-route-btn" onclick="confirmRoute()">Confirm Route</button>
         <button id="cancel-btn" onclick="goBackToHome()">Cancel</button>
     </div>
 
@@ -137,6 +137,7 @@
         const destinationDiv = document.getElementById("destination-page");
         const destinationText = document.getElementById("destination-text");
         const confirmBtn = document.getElementById("confirm-btn");
+        const confirmRouteBtn = document.getElementById("confirm-route-btn");
         const cancelBtn = document.getElementById("cancel-btn");
 
         function goFullscreen() {
@@ -195,8 +196,9 @@
 
         function confirmRoute() {
             // Hide both confirm and cancel buttons
-            confirmBtn.classList.add("hidden");
+            confirmRouteBtn.classList.add("hidden");
             cancelBtn.classList.add("hidden");
+            destinationText.innerText += " - Confirmed!";
         }
 
         function goBackToHome() {
