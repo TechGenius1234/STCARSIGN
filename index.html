@@ -59,6 +59,19 @@
         button:hover {
             background-color: #b0256f;
         }
+        #close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: #d63384;
+            font-size: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        #close-btn:hover {
+            color: #b0256f;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +84,7 @@
     </div>
 
     <div id="destination-page" class="hidden">
+        <button id="close-btn" onclick="exitFullscreen()">X</button>
         <h2 id="destination-text"></h2>
     </div>
 
@@ -108,6 +122,20 @@
             } else if (elem.msRequestFullscreen) { 
                 elem.msRequestFullscreen();
             }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { 
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { 
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { 
+                document.msExitFullscreen();
+            }
+            homeDiv.classList.remove("hidden");
+            destinationDiv.classList.add("hidden");
         }
 
         function showDestination(route) {
