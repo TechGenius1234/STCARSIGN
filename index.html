@@ -25,6 +25,7 @@
             color: #d63384;
             font-size: 30px;
             padding-top: 20px;
+            transform: scaleX(-1); /* Mirror effect */
         }
         .container {
             flex-grow: 1;
@@ -36,11 +37,13 @@
             font-size: 60px;
             color: black;
             margin: auto;
+            transform: scaleX(-1); /* Mirror effect */
         }
         footer {
             font-size: 20px;
             color: #333;
             padding-bottom: 20px;
+            transform: scaleX(-1); /* Mirror effect */
         }
         .hidden {
             display: none;
@@ -72,14 +75,14 @@
         #close-btn:hover {
             color: #b0256f;
         }
-        /* Larger route text */
         #destination-text {
-            font-size: 80px; /* Increased size for visibility */
+            font-size: 80px;
             color: #333;
             font-weight: bold;
             word-wrap: break-word;
             padding: 20px;
             margin-top: 50px;
+            transform: scaleX(-1); /* Mirror effect */
         }
     </style>
 </head>
@@ -128,8 +131,7 @@
             "WINFIELD TO ROYAL LEPAGE", "ROYAL LEPAGE TO WINFIELD",
             "MEMORIAL TO ROYAL LEPAGE", "ROYAL LEPAGE TO MEMORIAL",
             "RUTLAND TO ROYAL LEPAGE", "ROYAL LEPAGE TO RUTLAND",
-            "MEMORIAL TO WINFIELD", "WINFIELD TO MEMORIAL",
-            "IN-TRANSIT TO ROUTE"
+            "MEMORIAL TO WINFIELD", "WINFIELD TO MEMORIAL"
         ];
 
         const buttonsDiv = document.getElementById("buttons");
@@ -137,7 +139,6 @@
         const homeDiv = document.getElementById("home");
         const destinationDiv = document.getElementById("destination-page");
         const destinationText = document.getElementById("destination-text");
-        const confirmBtn = document.getElementById("confirm-btn");
         const confirmRouteBtn = document.getElementById("confirm-route-btn");
         const cancelBtn = document.getElementById("cancel-btn");
 
@@ -168,10 +169,7 @@
         }
 
         function startRouteSelection() {
-            // First, go fullscreen
             goFullscreen();
-            
-            // After going fullscreen, move to route selection
             setTimeout(() => {
                 startScreen.classList.add("hidden");
                 homeDiv.classList.remove("hidden");
@@ -196,7 +194,6 @@
         }
 
         function confirmRoute() {
-            // Hide both confirm and cancel buttons
             confirmRouteBtn.classList.add("hidden");
             cancelBtn.classList.add("hidden");
         }
