@@ -163,7 +163,7 @@
         const confirmBtn = document.getElementById("confirm-btn");
         const cancelBtn = document.getElementById("cancel-btn");
 
-        const correctPin = "7534"; // Pin code is 1234
+        const correctPin = "4096"; // Pin code is now 4096
 
         function goFullscreen() {
             let elem = document.documentElement;
@@ -219,6 +219,9 @@
         }
 
         function confirmRoute() {
+            // Hide both confirm and cancel buttons
+            confirmBtn.classList.add("hidden");
+            cancelBtn.classList.add("hidden");
             alert("Route confirmed!");
             // You can add additional functionality here, like confirming the route booking
         }
