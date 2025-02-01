@@ -87,6 +87,11 @@
 
     <h1>Sweetheart Ref Transit</h1>
 
+    <div id="start-screen">
+        <h2>Are you here?</h2>
+        <button id="confirm-btn" onclick="startRouteSelection()">Confirm</button>
+    </div>
+
     <div id="home" class="hidden">
         <h2>Select Your Route:</h2>
         <div id="buttons"></div>
@@ -127,6 +132,7 @@
         ];
 
         const buttonsDiv = document.getElementById("buttons");
+        const startScreen = document.getElementById("start-screen");
         const homeDiv = document.getElementById("home");
         const destinationDiv = document.getElementById("destination-page");
         const destinationText = document.getElementById("destination-text");
@@ -159,6 +165,18 @@
             location.reload(); // Reload the page after exiting fullscreen
         }
 
+        function startRouteSelection() {
+            // First, go fullscreen
+            goFullscreen();
+            
+            // After going fullscreen, move to route selection
+            setTimeout(() => {
+                startScreen.classList.add("hidden");
+                homeDiv.classList.remove("hidden");
+                createButtons();
+            }, 1500);  // Delay before revealing buttons (1.5 seconds)
+        }
+
         function showDestination(route) {
             homeDiv.classList.add("hidden");
             destinationDiv.classList.remove("hidden");
@@ -185,15 +203,6 @@
             destinationDiv.classList.add("hidden");
             homeDiv.classList.remove("hidden");
         }
-
-        // Show home page with route options
-        homeDiv.classList.remove("hidden");
-        createButtons();
-
-        // Add a delay of 1.5 seconds before going fullscreen when the page loads
-        setTimeout(() => {
-            goFullscreen();
-        }, 2500);  // 1500 milliseconds = 1.5 seconds
     </script>
 
 </body>
