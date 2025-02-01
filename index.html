@@ -110,7 +110,13 @@
 
     <h1>Sweetheart Ref Transit</h1>
 
-    <div id="home">
+    <div id="pin-container">
+        <h2>Enter Pin Code:</h2>
+        <input type="password" id="pin-input" maxlength="4" placeholder="Enter Pin" />
+        <button id="pin-btn" onclick="verifyPin()">Submit Pin</button>
+    </div>
+
+    <div id="home" class="hidden">
         <h2>Select Your Route:</h2>
         <div id="buttons"></div>
     </div>
@@ -118,12 +124,8 @@
     <div id="destination-page" class="hidden">
         <button id="close-btn" onclick="exitFullscreenAndReload()">X</button>
         <h2 id="destination-text"></h2>
-    </div>
-
-    <div id="pin-container" class="hidden">
-        <h2>Enter Pin Code:</h2>
-        <input type="password" id="pin-input" maxlength="4" placeholder="Enter Pin" />
-        <button id="pin-btn" onclick="verifyPin()">Submit Pin</button>
+        <button id="confirm-btn" onclick="confirmRoute()">Confirm Route</button>
+        <button id="cancel-btn" onclick="goBackToHome()">Cancel</button>
     </div>
 
     <footer>Your driver is Michelle D</footer>
@@ -150,7 +152,7 @@
             "WINFIELD TO ROYAL LEPAGE", "ROYAL LEPAGE TO WINFIELD",
             "MEMORIAL TO ROYAL LEPAGE", "ROYAL LEPAGE TO MEMORIAL",
             "RUTLAND TO ROYAL LEPAGE", "ROYAL LEPAGE TO RUTLAND",
-            "MEMORIAL TO WINFIELD", "WINFIELD TO MEMORIAL" // Added here
+            "MEMORIAL TO WINFIELD", "WINFIELD TO MEMORIAL"
         ];
 
         const buttonsDiv = document.getElementById("buttons");
@@ -158,8 +160,10 @@
         const destinationDiv = document.getElementById("destination-page");
         const pinDiv = document.getElementById("pin-container");
         const destinationText = document.getElementById("destination-text");
+        const confirmBtn = document.getElementById("confirm-btn");
+        const cancelBtn = document.getElementById("cancel-btn");
 
-        const correctPin = "7754"; // Set your desired pin code here
+        const correctPin = "1234"; // Pin code is 1234
 
         function goFullscreen() {
             let elem = document.documentElement;
@@ -208,12 +212,21 @@
             if (pinInput === correctPin) {
                 pinDiv.classList.add("hidden");
                 homeDiv.classList.remove("hidden");
+                createButtons();
             } else {
                 alert("Incorrect Pin. Please try again.");
             }
         }
 
-        createButtons();
+        function confirmRoute() {
+            alert("Route confirmed!");
+            // You can add additional functionality here, like confirming the route booking
+        }
+
+        function goBackToHome() {
+            destinationDiv.classList.add("hidden");
+            homeDiv.classList.remove("hidden");
+        }
     </script>
 
 </body>
