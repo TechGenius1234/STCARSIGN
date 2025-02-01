@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweetheart Ref Transit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffebf1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 30px;
+            padding-top: 20px;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h2 {
+            font-size: 60px;
+            color: black;
+            margin: auto;
+        }
+        footer {
+            font-size: 20px;
+            color: #333;
+            padding-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background-color: #d63384;
+            color: white;
+            padding: 15px;
+            border: none;
+            margin: 10px;
+            cursor: pointer;
+            width: 300px;
+            font-size: 20px;
+            display: block;
+        }
+        button:hover {
+            background-color: #b0256f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sweetheart Ref Transit</h1>
+
+    <div id="home">
+        <h2>Select Your Route:</h2>
+        <div id="buttons"></div>
+    </div>
+
+    <div id="destination-page" class="hidden">
+        <h2 id="destination-text"></h2>
+    </div>
+
+    <footer>Your driver is Michelle D</footer>
+
+    <script>
+        const routes = [
+            "MNP TO HOTEL", "HOTEL TO MNP",
+            "WINFIELD TO HOTEL", "HOTEL TO WINFIELD",
+            "MEMORIAL TO HOTEL", "HOTEL TO MEMORIAL",
+            "RUTLAND TO HOTEL", "HOTEL TO RUTLAND",
+            "MNP TO AIRPORT", "AIRPORT TO MNP",
+            "WINFIELD TO AIRPORT", "AIRPORT TO WINFIELD",
+            "MEMORIAL TO AIRPORT", "AIRPORT TO MEMORIAL",
+            "RUTLAND TO AIRPORT", "AIRPORT TO RUTLAND",
+            "MNP TO WINFIELD", "WINFIELD TO MNP",
+            "MEMORIAL TO RUTLAND", "RUTLAND TO MEMORIAL",
+            "MNP TO MEMORIAL", "MEMORIAL TO MNP",
+            "WINFIELD TO RUTLAND", "RUTLAND TO WINFIELD"
+        ];
+
+        const buttonsDiv = document.getElementById("buttons");
+        const homeDiv = document.getElementById("home");
+        const destinationDiv = document.getElementById("destination-page");
+        const destinationText = document.getElementById("destination-text");
+
+        function goFullscreen() {
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { 
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { 
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { 
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function showDestination(route) {
+            homeDiv.classList.add("hidden");
+            destinationDiv.classList.remove("hidden");
+            destinationText.innerText = route;
+            goFullscreen();
+        }
+
+        function createButtons() {
+            routes.forEach(route => {
+                let button = document.createElement("button");
+                button.innerText = route;
+                button.onclick = () => showDestination(route);
+                buttonsDiv.appendChild(button);
+            });
+        }
+
+        createButtons();
+    </script>
+
+</body>
+</html>
