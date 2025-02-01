@@ -93,7 +93,7 @@
     </div>
 
     <div id="destination-page" class="hidden">
-        <button id="close-btn" onclick="exitFullscreen()">X</button>
+        <button id="close-btn" onclick="exitFullscreenAndReload()">X</button>
         <h2 id="destination-text"></h2>
     </div>
 
@@ -142,7 +142,7 @@
             }
         }
 
-        function exitFullscreen() {
+        function exitFullscreenAndReload() {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.mozCancelFullScreen) { 
@@ -152,8 +152,7 @@
             } else if (document.msExitFullscreen) { 
                 document.msExitFullscreen();
             }
-            homeDiv.classList.remove("hidden");
-            destinationDiv.classList.add("hidden");
+            location.reload(); // Reload the page after exiting fullscreen
         }
 
         function showDestination(route) {
