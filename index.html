@@ -25,7 +25,6 @@
             color: #d63384;
             font-size: 30px;
             padding-top: 20px;
-            transform: scaleX(-1); /* Mirror effect */
         }
         .container {
             flex-grow: 1;
@@ -37,13 +36,11 @@
             font-size: 60px;
             color: black;
             margin: auto;
-            transform: scaleX(-1); /* Mirror effect */
         }
         footer {
             font-size: 20px;
             color: #333;
             padding-bottom: 20px;
-            transform: scaleX(-1); /* Mirror effect */
         }
         .hidden {
             display: none;
@@ -75,14 +72,19 @@
         #close-btn:hover {
             color: #b0256f;
         }
+        /* Larger route text */
         #destination-text {
-            font-size: 80px;
+            font-size: 80px; /* Increased size for visibility */
             color: #333;
             font-weight: bold;
             word-wrap: break-word;
             padding: 20px;
             margin-top: 50px;
-            transform: scaleX(-1); /* Mirror effect */
+        }
+        #welcome-text {
+            font-size: 40px;
+            color: black;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -95,6 +97,12 @@
         <button id="confirm-btn" onclick="startRouteSelection()">Confirm</button>
     </div>
 
+    <div id="name-entry" class="hidden">
+        <h2>Enter your name:</h2>
+        <input type="text" id="name-input" placeholder="Your Name" />
+        <button onclick="saveName()">Submit</button>
+    </div>
+
     <div id="home" class="hidden">
         <h2>Select Your Route:</h2>
         <div id="buttons"></div>
@@ -102,6 +110,7 @@
 
     <div id="destination-page" class="hidden">
         <button id="close-btn" onclick="exitFullscreenAndReload()">X</button>
+        <h2 id="welcome-text"></h2>
         <h2 id="destination-text"></h2>
         <button id="confirm-route-btn" onclick="confirmRoute()">Confirm Route</button>
         <button id="cancel-btn" onclick="goBackToHome()">Cancel</button>
@@ -136,11 +145,17 @@
 
         const buttonsDiv = document.getElementById("buttons");
         const startScreen = document.getElementById("start-screen");
+        const nameEntry = document.getElementById("name-entry");
         const homeDiv = document.getElementById("home");
         const destinationDiv = document.getElementById("destination-page");
         const destinationText = document.getElementById("destination-text");
+        const welcomeText = document.getElementById("welcome-text");
+        const confirmBtn = document.getElementById("confirm-btn");
         const confirmRouteBtn = document.getElementById("confirm-route-btn");
         const cancelBtn = document.getElementById("cancel-btn");
+        const nameInput = document.getElementById("name-input");
+
+        let userName = "";
 
         function goFullscreen() {
             let elem = document.documentElement;
@@ -169,18 +184,37 @@
         }
 
         function startRouteSelection() {
+            // Go fullscreen first
             goFullscreen();
+            
+            // After going fullscreen, show name entry screen
             setTimeout(() => {
                 startScreen.classList.add("hidden");
+                nameEntry.classList.remove("hidden");
+            }, 1500);  // 1.5 second delay before showing name entry
+        }
+
+        function saveName() {
+            userName = nameInput.value.trim();
+            if (userName) {
+                nameEntry.classList.add("hidden");
                 homeDiv.classList.remove("hidden");
                 createButtons();
-            }, 1500);  // Delay before revealing buttons (1.5 seconds)
+            } else {
+                alert("Please enter a name.");
+            }
         }
 
         function showDestination(route) {
             homeDiv.classList.add("hidden");
             destinationDiv.classList.remove("hidden");
             destinationText.innerText = route;
+            welcomeText.innerText = `Welcome ${userName}, your route is:`;
+
+            // Apply mirror effect for the windshield text
+            destinationText.style.transform = "scaleX(-1)";
+            welcomeText.style.transform = "scaleX(-1)";
+
             goFullscreen();
         }
 
@@ -194,6 +228,7 @@
         }
 
         function confirmRoute() {
+            // Hide confirm and cancel buttons after confirmation
             confirmRouteBtn.classList.add("hidden");
             cancelBtn.classList.add("hidden");
         }
