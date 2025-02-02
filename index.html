@@ -20,6 +20,10 @@
             background-color: #ffebf1;
             font-family: Arial, sans-serif;
             text-align: center;
+            transform: scaleX(-1); /* Make all text backwards */
+        }
+        h1, h2, footer {
+            transform: scaleX(-1); /* Ensure headings and footer are mirrored */
         }
         h1 {
             color: #d63384;
@@ -55,6 +59,7 @@
             width: 300px;
             font-size: 20px;
             display: block;
+            transform: scaleX(-1); /* Make buttons' text backwards */
         }
         button:hover {
             background-color: #b0256f;
@@ -80,13 +85,11 @@
             word-wrap: break-word;
             padding: 20px;
             margin-top: 50px;
-            transform: scaleX(-1); /* Make all text backwards */
         }
         #welcome-text {
             font-size: 40px;
             color: black;
             margin-top: 20px;
-            transform: scaleX(-1); /* Make all text backwards */
         }
     </style>
 </head>
@@ -211,12 +214,9 @@
             homeDiv.classList.add("hidden");
             destinationDiv.classList.remove("hidden");
             destinationText.innerText = route;
-            welcomeText.innerText = `Welcome ${userName}, you are going to:`;
+            welcomeText.innerText = `Welcome ${userName}, the route that has been selected is:`;
 
-            // Ensure everything is mirrored (backwards)
-            destinationText.style.transform = "scaleX(-1)";
-            welcomeText.style.transform = "scaleX(-1)";
-
+            // Go fullscreen after showing destination
             goFullscreen();
         }
 
